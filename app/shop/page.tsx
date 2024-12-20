@@ -16,6 +16,7 @@ type Product = {
   description: string;
   rating: number;
   stock: number;
+  quantity: number;
 };
 
 const categories = ['All', 'Electronics', 'Fashion', 'Shoes', 'Watches', 'Jewelry'];
@@ -29,12 +30,24 @@ export default function Shop() {
   const [sortOption, setSortOption] = useState('default');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
-  const { addToCart } = useCart();
+  const { addToCart, items } = useCart();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const { scrollY } = useScroll();
   const backgroundY = useTransform(scrollY, [0, 500], [0, 150]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   useEffect(() => {
     fetch('/api/products')
@@ -101,7 +114,7 @@ export default function Shop() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => addToCart({ ...featuredProduct, quantity: 1 })}
+                  onClick={() => addToCart(featuredProduct)}
                   className="px-6 py-3 bg-gold text-black rounded-full font-semibold flex items-center transition-colors duration-300 hover:bg-white"
                 >
                   <ShoppingBag className="h-5 w-5 mr-2" />
@@ -188,7 +201,7 @@ export default function Shop() {
                   </button>
                 </div>
                 <AnimatePresence>
-                  {(isFilterOpen || window.innerWidth >= 768) && (
+                  {(isFilterOpen || !isMobile) && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
@@ -297,7 +310,7 @@ export default function Shop() {
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          onClick={() => addToCart({ ...product, quantity: 1 })}
+                          onClick={() => addToCart(product)}
                           className="px-4 py-2 bg-indigo-600 text-white rounded-full flex items-center transition-colors duration-300 hover:bg-indigo-700"
                         >
                           <ShoppingBag className="h-5 w-5 mr-2" />
@@ -312,12 +325,13 @@ export default function Shop() {
           </div>
         </main>
 
+        {/* QuickView Modal */}
         <QuickView
           product={quickViewProduct}
           isOpen={!!quickViewProduct}
           onClose={() => setQuickViewProduct(null)}
         />
-
+        
       </div>
     </div>
   );
