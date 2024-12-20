@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo & Tagline */}
           <div className="col-span-1">
-            <h2 className="text-2xl font-bold mb-4">FASHION</h2>
+            <h2 className="text-2xl font-bold mb-4">EXCLUSIVE</h2>
             <p className="text-gray-400 mb-4">
               Complete your style with awesome clothes from us.
             </p>
