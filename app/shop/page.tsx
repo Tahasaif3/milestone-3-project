@@ -30,7 +30,7 @@ export default function Shop() {
   const [sortOption, setSortOption] = useState('default');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
-  const { addToCart, items } = useCart();
+  const { addToCart } = useCart();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
