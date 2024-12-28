@@ -238,21 +238,22 @@ function Newsletter() {
     <div className="bg-purple-100 rounded-lg p-8 text-center">
       <h2 className="text-3xl font-semibold mb-4">Stay Updated</h2>
       <p className="text-gray-600 mb-6">Subscribe to our newsletter for the latest updates and exclusive offers.</p>
-      <form className="flex max-w-md mx-auto">
-        <input
-          type="email"
-          placeholder="Enter your email"
-          className="flex-grow px-4 py-2 rounded-l-full focus:outline-none focus:ring-2 focus:ring-purple-600"
-        />
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-purple-600 text-white px-6 py-2 rounded-r-full font-semibold hover:bg-purple-700 transition-colors flex items-center"
-        >
-          Subscribe
-          <Mail className="w-5 h-5 ml-2" />
-        </motion.button>
-      </form>
+     <form className="flex flex-wrap max-w-md mx-auto p-4">
+  <input
+    type="email"
+    placeholder="Enter your email"
+    className="flex-grow px-4 py-2 rounded-l-full focus:outline-none focus:ring-2 focus:ring-purple-600 mb-2 sm:mb-0 sm:flex-grow-0 sm:w-full sm:px-3 sm:py-2"
+  />
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="bg-purple-600 text-white px-6 py-2 rounded-r-full font-semibold hover:bg-purple-700 transition-colors flex items-center sm:w-full sm:px-3"
+  >
+    Subscribe
+    <Mail className="w-5 h-5 ml-2" />
+  </motion.button>
+</form>
+
     </div>
   )
 }
