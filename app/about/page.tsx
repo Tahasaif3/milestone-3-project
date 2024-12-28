@@ -245,13 +245,14 @@ function Newsletter() {
     className="flex-grow px-4 py-2 rounded-l-full focus:outline-none focus:ring-2 focus:ring-purple-600 mb-2 sm:mb-0 sm:flex-grow-0 sm:w-full sm:px-3 sm:py-2"
   />
   <motion.button
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    className="bg-purple-600 text-white px-6 py-2 rounded-r-full font-semibold hover:bg-purple-700 transition-colors flex items-center sm:w-full sm:px-3"
-  >
-    Subscribe
-    <Mail className="w-5 h-5 ml-2" />
-  </motion.button>
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  className="bg-purple-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-purple-700 transition-all duration-300 ease-in-out shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-400 flex items-center justify-center"
+>
+  Subscribe
+  <Mail className="w-5 h-5 ml-2" />
+</motion.button>
+
 </form>
 
     </div>
